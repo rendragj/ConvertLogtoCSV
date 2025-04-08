@@ -1,0 +1,15 @@
+import csv
+
+input_file = 'dhcp_log.txt'
+output_file = 'dhcp_logs.csv'
+
+headers = ['ts', 'uid', 'id.orig_h', 'id.orig_p', 'id.resp_h', 'id.resp_p', 'mac', 'assigned_ip', 'lease_time', 'trans_id']
+
+with open(input_file, 'r') as infile, open(output_file, 'w', newline='') as outfile:
+    writer = csv.writer(outfile)
+    writer.writerow(headers)
+    for line in infile: 
+        row = line.strip().split('\t')
+        writer.writerow(row)
+        
+print(f"Conversion complete. CSV saved as {output_file}")
